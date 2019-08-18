@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>模拟退火（SA）学习笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="引用：浅谈$SA-M$_$sea$ $SA$学习笔记-$99NL$ 退火流程：$1.$由上一次接受的解$pre$出发，随机得到一个可能解$x$。 $2.$若当前解优于最优解$ans$，覆盖最优解。 $3.$否则$x$将会以$exp(delta/T)$的概率成为下一次的$pre$。 $4.T*\Delta$降温。 $\Theta(???)$“一般降温系数 $\Delta$ 与 $1$ 的差减少一个数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟退火（SA）学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/08/06/SAStudyAccount/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="引用：浅谈$SA-M$_$sea$ $SA$学习笔记-$99NL$ 退火流程：$1.$由上一次接受的解$pre$出发，随机得到一个可能解$x$。 $2.$若当前解优于最优解$ans$，覆盖最优解。 $3.$否则$x$将会以$exp(delta/T)$的概率成为下一次的$pre$。 $4.T*\Delta$降温。 $\Theta(???)$“一般降温系数 $\Delta$ 与 $1$ 的差减少一个数">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-07T09:10:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模拟退火（SA）学习笔记">
+<meta name="twitter:description" content="引用：浅谈$SA-M$_$sea$ $SA$学习笔记-$99NL$ 退火流程：$1.$由上一次接受的解$pre$出发，随机得到一个可能解$x$。 $2.$若当前解优于最优解$ans$，覆盖最优解。 $3.$否则$x$将会以$exp(delta/T)$的概率成为下一次的$pre$。 $4.T*\Delta$降温。 $\Theta(???)$“一般降温系数 $\Delta$ 与 $1$ 的差减少一个数">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SAStudyAccount" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/06/SAStudyAccount/" class="article-date">
+  <time datetime="2019-08-06T09:59:21.000Z" itemprop="datePublished">2019-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      模拟退火（SA）学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>引用：<a href="https://m-sea.blog.luogu.org/qian-tan-SA" target="_blank" rel="noopener">浅谈$SA-M$_$sea$</a></p>
+<p><a href="https://99nl.blog.luogu.org/guan-yu-mu-ni-tui-huo-di-xue-xi-bi-ji" target="_blank" rel="noopener">$SA$学习笔记-$99NL$</a></p>
+<h2 id="退火流程："><a href="#退火流程：" class="headerlink" title="退火流程："></a>退火流程：</h2><p>$1.$由上一次接受的解$pre$出发，随机得到一个可能解$x$。</p>
+<p>$2.$若当前解优于最优解$ans$，覆盖最优解。</p>
+<p>$3.$否则$x$将会以$exp(delta/T)$的概率成为下一次的$pre$。</p>
+<p>$4.T*\Delta$降温。</p>
+<h2 id="Theta"><a href="#Theta" class="headerlink" title="$\Theta(???)$"></a>$\Theta(???)$</h2><p>“一般降温系数 $\Delta$ 与 $1$ 的差减少一个数量级, 耗时大约多 $10$ 倍；$T_0$和$T_k$变化一个数量级, 耗时不会变化很大。”</p>
+<p>$by;M$_$sea$</p>
+<h2 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h2><p>$1.$降温系数取$[0.95,0.997]$左右。</p>
+<p>$2.$如何生成新解？</p>
+<p>坐标系内：随机生成一个点，或者生成一个向量。</p>
+<p>序列问题：$random;shuffle$ 或者随机交换两个数。</p>
+<p>网格问题：可以看做二维序列，每次交换两个格子即可。</p>
+<p>$by;M$_$sea$</p>
+<p>$3.$如果想多跑几次….</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MAX_TIME = <span class="number">0.7</span>~<span class="number">0.8</span></span><br><span class="line"><span class="keyword">while</span> ((<span class="keyword">double</span>)clock()/CLOCKS_PER_SEC&lt;MAX_TIME) SA();</span><br></pre></td></tr></table></figure>
+
+<p>实测<a href="https://www.luogu.org/record/22257195" target="_blank" rel="noopener">$P1337[JSOI2004]$平衡点 / 吊打$XXX$评测记录</a> $0.6-&gt;TLE$</p>
+<p>$4.WA?$</p>
+<p>不同的$\Delta$、$T_0$、$T_k$甚至$srand()$和$SA$的次数都会影响到答案。</p>
+<p>$by;M$_$sea$</p>
+<p>$About:srand()$</p>
+<p>你可以这样写：</p>
+<p>$srand((unsigned)time(NULL))/srand(19260817)$</p>
+<p>再$srand(rand())$几次。</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a href="https://www.luogu.org/problem/P1337" target="_blank" rel="noopener">$P1337[JSOI2004]$平衡点 / 吊打$XXX$</a></p>
+<p>$1.$势能的计算：$len*w$（$len:$绳在桌面上的长度）</p>
+<p>原理：绳子总长不变，$len$越大，物体越高。</p>
+<p>$2.$横纵坐标的增量：$((rand() &lt;&lt; 1) - RAND$_$MAX) * T$</p>
+<p>$((rand() &lt;&lt; 1) - RAND$_$MAX)$得到介于$[-RAND$ _ $MAX,RAND$ _ $MAX-1]$之间的随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-14</span>, del = <span class="number">0.992</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1010</span>;</span><br><span class="line"><span class="keyword">int</span> N;</span><br><span class="line"><span class="keyword">double</span> ansx, ansy, ans = <span class="number">1e18</span>;</span><br><span class="line"><span class="keyword">int</span> x[MAXN], y[MAXN], w[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calcEp</span><span class="params">(<span class="keyword">double</span> nx, <span class="keyword">double</span> ny)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">double</span> dx = nx - x[i], dy = ny - y[i];</span><br><span class="line">		ret += <span class="built_in">sqrt</span>(dx * dx + dy * dy) * (<span class="keyword">double</span>)w[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SA</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> T = <span class="number">1926</span>, tx = ansx, ty = ansy;</span><br><span class="line">	<span class="keyword">while</span> (T &gt; eps)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">double</span> nx = tx + ((rand() &lt;&lt; <span class="number">1</span>) - RAND_MAX) * T;</span><br><span class="line">		<span class="keyword">double</span> ny = ty + ((rand() &lt;&lt; <span class="number">1</span>) - RAND_MAX) * T;</span><br><span class="line">		<span class="keyword">double</span> c = calcEp(nx, ny); <span class="keyword">double</span> d = c - ans;</span><br><span class="line">		<span class="keyword">if</span> (d &lt; eps) &#123;ansx = nx, ansy = ny; ans = c; tx = nx, ty = ny;&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">exp</span>(-d / T) * RAND_MAX &gt; rand())&#123;tx = nx, ty = ny;&#125;</span><br><span class="line">		T *= del;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++) ansx += x[i], ansy += y[i];</span><br><span class="line">	ansx /= N, ansy /= N;</span><br><span class="line">	SA(); SA(); SA(); SA(); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	srand(<span class="number">19260817</span>); srand(rand());</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;N);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++) <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;x[i], &amp;y[i], &amp;w[i]);</span><br><span class="line">	calc();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%.3lf %.3lf\n"</span>, ansx, ansy);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/06/SAStudyAccount/" data-id="cjzgyf5kb0005scqdxfz4fngu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/07/Hexo-NexT/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hexo-NexT主题搭建笔记 
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/15/recommend/">一些好用的软件/网址推荐!</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/15/HexoFixed/">hexo修复笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/08/Test-2019-8-7/">Test2019.8.7</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/08/Test2019-8-8/">Test2019.8.8 </a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/07/P3177 [HAOI2015]TreeDye/">洛谷P3177 [HAOI2015]树上染色</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
