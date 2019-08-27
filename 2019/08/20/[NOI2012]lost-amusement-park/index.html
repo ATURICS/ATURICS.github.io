@@ -55,18 +55,19 @@
   };
 </script>
 
-  <meta name="description" content="$Description$$Solution$分开计算每条边的贡献。 边对点产生贡献，当且仅当边的两端都有点。 于是对于$(u,fa)$，$u$的子树选中了$x$个点，我们可以分开计算白点和黑点的贡献$sum:$ $sum_{(u,fa)}=x(k-x)+(size[u]-x)(n-size[u]-k+x)$ $dp[fa][x]=dp[fa][x-y]+dp[v][y]+sum{(u,fa)}w">
+  <meta name="description" content="什么逛公园啊游乐园啊，一看就没好事。 $Description$给定一棵树或基环树，您可以以任意点作为起点，等概率走到与之相连的任意未访问过的点。求路径的期望长度。 [$Solution$](https://www.luogu.org/blog/emptyset/solution-p2081 )$Talk\;is\;Cheap...$">
+<meta name="keywords" content="基环树,dp,期望">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「题解」 [HAOI2015]树上染色">
-<meta property="og:url" content="https://aturics.github.io/2019/08/07/P3177 [HAOI2015]TreeDye/index.html">
+<meta property="og:title" content="「题解」[NOI2012]迷失游乐园">
+<meta property="og:url" content="https://aturics.github.io/2019/08/20/[NOI2012]lost-amusement-park/index.html">
 <meta property="og:site_name" content="I MAY HATE MYSELF IN THE MORNING">
-<meta property="og:description" content="$Description$$Solution$分开计算每条边的贡献。 边对点产生贡献，当且仅当边的两端都有点。 于是对于$(u,fa)$，$u$的子树选中了$x$个点，我们可以分开计算白点和黑点的贡献$sum:$ $sum_{(u,fa)}=x(k-x)+(size[u]-x)(n-size[u]-k+x)$ $dp[fa][x]=dp[fa][x-y]+dp[v][y]+sum{(u,fa)}w">
+<meta property="og:description" content="什么逛公园啊游乐园啊，一看就没好事。 $Description$给定一棵树或基环树，您可以以任意点作为起点，等概率走到与之相连的任意未访问过的点。求路径的期望长度。 [$Solution$](https://www.luogu.org/blog/emptyset/solution-p2081 )$Talk\;is\;Cheap...$">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-20T07:21:07.223Z">
+<meta property="og:updated_time" content="2019-08-21T09:19:14.484Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「题解」 [HAOI2015]树上染色">
-<meta name="twitter:description" content="$Description$$Solution$分开计算每条边的贡献。 边对点产生贡献，当且仅当边的两端都有点。 于是对于$(u,fa)$，$u$的子树选中了$x$个点，我们可以分开计算白点和黑点的贡献$sum:$ $sum_{(u,fa)}=x(k-x)+(size[u]-x)(n-size[u]-k+x)$ $dp[fa][x]=dp[fa][x-y]+dp[v][y]+sum{(u,fa)}w">
-  <link rel="canonical" href="https://aturics.github.io/2019/08/07/P3177 [HAOI2015]TreeDye/">
+<meta name="twitter:title" content="「题解」[NOI2012]迷失游乐园">
+<meta name="twitter:description" content="什么逛公园啊游乐园啊，一看就没好事。 $Description$给定一棵树或基环树，您可以以任意点作为起点，等概率走到与之相连的任意未访问过的点。求路径的期望长度。 [$Solution$](https://www.luogu.org/blog/emptyset/solution-p2081 )$Talk\;is\;Cheap...$">
+  <link rel="canonical" href="https://aturics.github.io/2019/08/20/[NOI2012]lost-amusement-park/">
 
 
 <script id="page-configurations">
@@ -80,7 +81,7 @@
   };
 </script>
 
-  <title>「题解」 [HAOI2015]树上染色 | I MAY HATE MYSELF IN THE MORNING</title>
+  <title>「题解」[NOI2012]迷失游乐园 | I MAY HATE MYSELF IN THE MORNING</title>
   
 
 
@@ -176,6 +177,17 @@
       
       
         
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
         <li class="menu-item menu-item-archives">
       
     
@@ -235,7 +247,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://aturics.github.io/2019/08/07/P3177 [HAOI2015]TreeDye/">
+    <link itemprop="mainEntityOfPage" href="https://aturics.github.io/2019/08/20/[NOI2012]lost-amusement-park/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="八聲甘州">
@@ -249,7 +261,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">「题解」 [HAOI2015]树上染色
+          <h1 class="post-title" itemprop="name headline">「题解」[NOI2012]迷失游乐园
 
             
           </h1>
@@ -266,7 +278,7 @@
                 
               
 
-              <time title="Created: 2019-08-07 17:55:21" itemprop="dateCreated datePublished" datetime="2019-08-07T17:55:21+08:00">2019-08-07</time>
+              <time title="Created: 2019-08-20 16:37:53" itemprop="dateCreated datePublished" datetime="2019-08-20T16:37:53+08:00">2019-08-20</time>
             </span>
           
             
@@ -277,7 +289,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-20 15:21:07" itemprop="dateModified" datetime="2019-08-20T15:21:07+08:00">2019-08-20</time>
+                <time title="Modified: 2019-08-21 17:19:14" itemprop="dateModified" datetime="2019-08-21T17:19:14+08:00">2019-08-21</time>
               </span>
             
           
@@ -293,14 +305,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Description"><a href="#Description" class="headerlink" title="$Description$"></a><a href="https://www.luogu.org/problem/P3177" target="_blank" rel="noopener">$Description$</a></h2><h2 id="Solution"><a href="#Solution" class="headerlink" title="$Solution$"></a><a href="https://www.luogu.org/blog/ahaha254/solution-p3177" target="_blank" rel="noopener">$Solution$</a></h2><p>分开计算每条边的贡献。</p>
-<p>边对点产生贡献，当且仅当边的两端都有点。</p>
-<p>于是对于$(u,fa)$，$u$的子树选中了$x$个点，我们可以分开计算白点和黑点的贡献$sum:$</p>
-<p>$sum_{(u,fa)}=x(k-x)+(size[u]-x)(n-size[u]-k+x)$</p>
-<p>$dp[fa][x]=dp[fa][x-y]+dp[v][y]+sum<em>{(u,fa)}w</em>{(u,fa)}$</p>
-<p>把$u$打成$y$水过两个点$QWQ$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2010</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> dp[MAXN][MAXN];</span><br><span class="line"><span class="keyword">int</span> siz[MAXN] = &#123;<span class="number">0</span>&#125;, h[MAXN];</span><br><span class="line"><span class="keyword">int</span> cnt = <span class="number">0</span>, N, K;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">E</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> t, val, nxt;</span><br><span class="line">&#125;Ed[<span class="number">2</span> * MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> f, <span class="keyword">int</span> t, <span class="keyword">int</span> val)</span></span>&#123;Ed[++cnt].t = t; Ed[cnt].nxt = h[f]; Ed[cnt].val = val; h[f] = cnt;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> fa)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	siz[k] = <span class="number">1</span>; dp[k][<span class="number">0</span>] = dp[k][<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = h[k]; i; i = Ed[i].nxt)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u = Ed[i].t; <span class="keyword">if</span> (u == fa) <span class="keyword">continue</span>;</span><br><span class="line">		dfs(u, k); siz[k] += siz[u];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="built_in">std</span>::min(siz[k], K); x &gt;= <span class="number">0</span>; x--)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y &lt;= <span class="built_in">std</span>::min(x, siz[u]); y++)</span><br><span class="line">			&#123; </span><br><span class="line">				<span class="keyword">if</span> (dp[k][x - y] == <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">long</span> <span class="keyword">long</span> sum = <span class="number">1L</span>L * (K - y) * y + <span class="number">1L</span>L * (siz[u] - y) * (N - siz[u] - K + y) ;</span><br><span class="line">				dp[k][x] = <span class="built_in">std</span>::max(dp[k][x - y] + dp[u][y] + sum * Ed[i].val, dp[k][x]);</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rd</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">0</span>; <span class="keyword">char</span> ch = getchar();</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch)) ch = getchar();</span><br><span class="line">	<span class="keyword">for</span>(; <span class="built_in">isdigit</span>(ch); ch = getchar()) ret = ret * <span class="number">10</span> + (<span class="keyword">int</span>)ch - <span class="number">48</span>;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	freopen(<span class="string">"Tarly.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	N = rd(), K = rd();</span><br><span class="line">	<span class="built_in">memset</span>(dp, <span class="number">-1</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> f = rd(), t = rd(), v = rd(); </span><br><span class="line">		Add(f, t, v); Add(t, f, v);</span><br><span class="line">	&#125;</span><br><span class="line">	dfs(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, dp[<span class="number">1</span>][K]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <p><del>什么逛公园啊游乐园啊，一看就没好事。</del></p>
+<h2 id="Description"><a href="#Description" class="headerlink" title="$Description$"></a><center>$Description$</center></h2><p>给定一棵树或基环树，您可以以任意点作为起点，等概率走到与之相连的任意未访问过的点。求路径的期望长度。</p>
+<h2 id="Solution-https-www-luogu-org-blog-emptyset-solution-p2081"><a href="#Solution-https-www-luogu-org-blog-emptyset-solution-p2081" class="headerlink" title="[$Solution$](https://www.luogu.org/blog/emptyset/solution-p2081 )"></a><center>[$Solution$](https://www.luogu.org/blog/emptyset/solution-p2081 )</center></h2><h2 id="Talk-is-Cheap"><a href="#Talk-is-Cheap" class="headerlink" title="$Talk\;is\;Cheap...$"></a><center>$Talk\;is\;Cheap...$</center></h2>
     </div>
 
     
@@ -310,14 +317,27 @@
       
 
       <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/基环树/" rel="tag"># 基环树</a>
+            
+              <a href="/tags/dp/" rel="tag"># dp</a>
+            
+              <a href="/tags/期望/" rel="tag"># 期望</a>
+            
+          </div>
+        
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/08/06/SAStudyAccount/" rel="next" title="「学习笔记」模拟退火">
-                  <i class="fa fa-chevron-left"></i> 「学习笔记」模拟退火
+                <a href="/2019/08/20/BRTStudyAccount/" rel="next" title="「学习笔记」基环树">
+                  <i class="fa fa-chevron-left"></i> 「学习笔记」基环树
                 </a>
               
             </div>
@@ -325,10 +345,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/08/15/HexoFixed/" rel="prev" title="hexo一路坑">
-                  hexo一路坑 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -388,8 +404,29 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
         </a>
       </div>
     
@@ -479,7 +516,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">$Description$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">$Solution$</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">$Description$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-https-www-luogu-org-blog-emptyset-solution-p2081"><span class="nav-number">2.</span> <span class="nav-text">[$Solution$](https://www.luogu.org/blog/emptyset/solution-p2081 )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Talk-is-Cheap"><span class="nav-number">3.</span> <span class="nav-text">$Talk\;is\;Cheap...$</span></a></li></ol></div>
             
 
           </div>
@@ -683,7 +720,7 @@ if ($('body').find('div.pdf').length) {
       repo: 'blog-comment',
       owner: 'ATURICS',
       admin: ['aturics'],
-      id: '8ba2f45d7344b8fdee3f01a615d8ed7d',
+      id: '0e602dff38acc7d74c75ea33b74e8426',
         language: 'en',
       
       distractionFreeMode: 'true'
