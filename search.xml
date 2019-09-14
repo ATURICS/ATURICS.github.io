@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[「题解」[NOI2012]迷失游乐园]]></title>
-    <url>%2F2019%2F08%2F20%2F%5BNOI2012%5Dlost-amusement-park%2F</url>
-    <content type="text"><![CDATA[什么逛公园啊游乐园啊，一看就没好事。 $Description$给定一棵树或基环树，您可以以任意点作为起点，等概率走到与之相连的任意未访问过的点。求路径的期望长度。 [$Solution$](https://www.luogu.org/blog/emptyset/solution-p2081 )$Talk\;is\;Cheap...$]]></content>
+    <title><![CDATA[「容斥+dp」[CQOI2011]放棋子]]></title>
+    <url>%2F2019%2F09%2F14%2Fcqoi2011%2F</url>
+    <content type="text"><![CDATA[$Description$在一个m行n列的棋盘里放一些彩色的棋子，使得每个格子最多放一个棋子，且不同 颜色的棋子不能在同一行或者同一列。有多少种方法？ $Solution$ 由于不同色的棋子不能放在同一列，每种颜色的棋子的放置是相互独立的。 因此可以考虑dp处理。 设$f[i][j][k]$：前k种颜色的棋子占领了i行j列的方案数。 $C[i][j]$：组合数（i个中选j个）。 设$g[i][j][k]:$k个棋子恰好占据i行j列的方案数。 $a[k]:$第k种棋子的个数。 由于一个棋子至少要占据一行一列，我们枚举$l&lt;i,r&lt;j$ $f[i][j][k]=\Sigma f[l][r][k-1]× C[n-l][i-l]× C[m-r][j-r]× g[i-l][j-r][a[k]]$ $Explanation:$对于$f[l][r][k-1]$中已经选中的l行r列不动，从剩下的n-l行中任意选择i-l行放置棋子，列同理。 其他都好办，但我们发现$g[i][j][k]$没法直接求。 通过观察，我们发现在i行j列中放k个棋子的方案数很好求（$C[i*j][k]$），不合法的方案就是实际上占领的行数&lt;i或列数&lt;j。 所以直接枚举$l&lt;=i,r&lt;=j(l×r&lt;i×j)$ $g[i][j][k]=C[i× j][k]-\Sigma g[l][r][k]× C[i][l]× C[j][r]$ $Talk\;is\;Cheap...$1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253include&lt;cstdio&gt;include&lt;cstring&gt;define ll long longconst ll MOD = 1e9 + 9;int N, M, Col;ll g35, f35[15], C910;int main()&#123; scanf("%d%d%d", &amp;N, &amp;M, &amp;Col); int lim = N * M; for (int i = 0; i &lt;= lim; i++) C[i][0] = 1; for (int i = 1; i &lt;= lim; i++) for (int j = 1; j &lt;= i; j++) C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % MOD; f[0][0][0] = 1; for (int k = 1; k &lt;= Col; k++) &#123; int x; scanf("%d", &amp;x); memset(g, 0, sizeof(g)); for (int i = 0; i &lt;= N; i++) for (int j = 0; j &lt;= M; j++) &#123; if (i * j &lt; x) continue; g[i][j] = C[i * j][x]; for (int l = 0; l &lt;= i; l++) for (int r = 0; r &lt;= j; r++) &#123; if (l == i &amp;&amp; r == j) continue; g[i][j] = (g[i][j] - g[l][r] * C[i][l] % MOD * C[j][r] % MOD + MOD) % MOD; &#125; &#125; for (int i = 1; i &lt;= N; i++) for (int j = 1; j &lt;= M; j++) for (int l = 0; l &lt; i; l++) for (int r = 0; r &lt; j; r++) &#123; if ((i - l) * (j - r) &lt; x) continue; f[i][j][k] = (f[i][j][k] + f[l][r][k - 1] % MOD * g[i - l][j - r] % MOD * C[N - l][i - l] % MOD * C[M - r][j - r] % MOD) % MOD; &#125; &#125; ll Ans = 0; for (int i = 1; i &lt;= N; i++) for (int j = 1; j &lt;= M; j++) Ans = (Ans + f[i][j][Col]) % MOD; printf("%lld", Ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
       <tags>
-        <tag>基环树</tag>
+        <tag>容斥</tag>
         <tag>dp</tag>
-        <tag>期望</tag>
       </tags>
   </entry>
   <entry>
