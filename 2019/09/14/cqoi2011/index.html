@@ -63,10 +63,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="「容斥+dp」[CQOI2011]放棋子">
 <meta property="og:url" content="https://aturics.github.io/2019/09/14/cqoi2011/index.html">
-<meta property="og:site_name" content="I MAY HATE MYSELF IN THE MORNING">
+<meta property="og:site_name" content="ATURICS">
 <meta property="og:description" content="$Description$在一个m行n列的棋盘里放一些彩色的棋子，使得每个格子最多放一个棋子，且不同 颜色的棋子不能在同一行或者同一列。有多少种方法？ $Solution$ 由于不同色的棋子不能放在同一列，每种颜色的棋子的放置是相互独立的。 因此可以考虑dp处理。  设$f[i][j][k]$：前k种颜色的棋子占领了i行j列的方案数。 $C[i][j]$：组合数（i个中选j个）。 设$g[i][j">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-14T04:27:25.736Z">
+<meta property="og:updated_time" content="2019-10-06T10:58:46.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「容斥+dp」[CQOI2011]放棋子">
 <meta name="twitter:description" content="$Description$在一个m行n列的棋盘里放一些彩色的棋子，使得每个格子最多放一个棋子，且不同 颜色的棋子不能在同一行或者同一列。有多少种方法？ $Solution$ 由于不同色的棋子不能放在同一列，每种颜色的棋子的放置是相互独立的。 因此可以考虑dp处理。  设$f[i][j][k]$：前k种颜色的棋子占领了i行j列的方案数。 $C[i][j]$：组合数（i个中选j个）。 设$g[i][j">
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title>「容斥+dp」[CQOI2011]放棋子 | I MAY HATE MYSELF IN THE MORNING</title>
+  <title>「容斥+dp」[CQOI2011]放棋子 | ATURICS</title>
   
 
 
@@ -133,11 +133,11 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">I MAY HATE MYSELF IN THE MORNING</span>
+        <span class="site-title">ATURICS</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <p class="site-subtitle">A Man Who Sold The World.</p>
+        <p class="site-subtitle">Viva la Vida</p>
       
   </div>
 
@@ -185,6 +185,17 @@
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
 
   </li>
       
@@ -259,7 +270,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I MAY HATE MYSELF IN THE MORNING">
+      <meta itemprop="name" content="ATURICS">
     </span>
       <header class="post-header">
 
@@ -281,11 +292,19 @@
                 
               
 
-              <time title="Created: 2019-09-14 12:17:27 / Modified: 12:27:25" itemprop="dateCreated datePublished" datetime="2019-09-14T12:17:27+08:00">2019-09-14</time>
+              <time title="Created: 2019-09-14 12:17:27" itemprop="dateCreated datePublished" datetime="2019-09-14T12:17:27+08:00">2019-09-14</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-06 18:58:46" itemprop="dateModified" datetime="2019-10-06T18:58:46+08:00">2019-10-06</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -313,9 +332,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Description"><a href="#Description" class="headerlink" title="$Description$"></a><center>$Description$</center></h2><p>在一个m行n列的棋盘里放一些彩色的棋子，使得每个格子最多放一个棋子，且不同</p>
+        <h2 id="Description"><a href="#Description" class="headerlink" title="$Description$"></a>$Description$</h2><p>在一个m行n列的棋盘里放一些彩色的棋子，使得每个格子最多放一个棋子，且不同</p>
 <p>颜色的棋子不能在同一行或者同一列。有多少种方法？</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="$Solution$"></a><center>$Solution$</center></h2><ul>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="$Solution$"></a>$Solution$</h2><ul>
 <li><p><strong>由于不同色的棋子不能放在同一列，每种颜色的棋子的放置是相互独立的。</strong></p>
 <p>因此可以考虑dp处理。</p>
 </li>
@@ -323,19 +342,21 @@
 <p>$C[i][j]$：组合数（i个中选j个）。</p>
 <p>设$g[i][j][k]:$k个棋子恰好占据i行j列的方案数。</p>
 <p>$a[k]:$第k种棋子的个数。</p>
-<p>由于一个棋子至少要占据一行一列，我们枚举$l&lt;i,r&lt;j$</p>
+</li>
+<li><p>由于一个棋子至少要占据一行一列，我们枚举$l&lt;i,r&lt;j$</p>
 <p>$f[i][j][k]=\Sigma f[l][r][k-1]× C[n-l][i-l]× C[m-r][j-r]× g[i-l][j-r][a[k]]$</p>
-<p>$Explanation:$对于$f[l][r][k-1]$中已经选中的l行r列不动，从剩下的n-l行中任意选择i-l行放置棋子，列同理。</p>
+</li>
+<li><p>$Explanation:$对于$f[l][r][k-1]$中已经选中的l行r列不动，从剩下的n-l行中任意选择i-l行放置棋子，列同理。</p>
 </li>
 <li><p>其他都好办，但我们发现$g[i][j][k]$没法直接求。</p>
-<p>通过观察，我们发现在i行j列中放k个棋子的方案数很好求（$C[i*j][k]$），不合法的方案就是实际上占领的行数&lt;i或列数&lt;j。</p>
+</li>
+<li><p>通过观察，我们发现在i行j列中放k个棋子的方案数很好求（$C[i*j][k]$），不合法的方案就是实际上占领的行数&lt;i或列数&lt;j。</p>
 </li>
 <li><p>所以直接枚举$l&lt;=i,r&lt;=j(l×r&lt;i×j)$</p>
 <p>$g[i][j][k]=C[i× j][k]-\Sigma g[l][r][k]× C[i][l]× C[j][r]$</p>
 </li>
 </ul>
-<h2 id="Talk-is-Cheap"><a href="#Talk-is-Cheap" class="headerlink" title="$Talk\;is\;Cheap...$"></a><center>$Talk\;is\;Cheap...$</center></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">include&lt;cstdio&gt;</span><br><span class="line">include&lt;cstring&gt;</span><br><span class="line">define ll <span class="keyword">long</span> <span class="keyword">long</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ll MOD = <span class="number">1e9</span> + <span class="number">9</span>;</span><br><span class="line"><span class="keyword">int</span> N, M, Col;</span><br><span class="line">ll g35, f35[<span class="number">15</span>], C910;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;N, &amp;M, &amp;Col);</span><br><span class="line">	<span class="keyword">int</span> lim = N * M;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= lim; i++)</span><br><span class="line">		C[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= lim; i++) </span><br><span class="line">    	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j++)</span><br><span class="line">        	C[i][j] = (C[i - <span class="number">1</span>][j - <span class="number">1</span>] + C[i - <span class="number">1</span>][j]) % MOD;</span><br><span class="line">        </span><br><span class="line">	f[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= Col; k++)</span><br><span class="line">	&#123;   </span><br><span class="line">    	<span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x);</span><br><span class="line">    	<span class="built_in">memset</span>(g, <span class="number">0</span>, <span class="keyword">sizeof</span>(g));</span><br><span class="line">    	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N; i++)</span><br><span class="line">        	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= M; j++)</span><br><span class="line">       	 	&#123;</span><br><span class="line">            	<span class="keyword">if</span> (i * j &lt; x) <span class="keyword">continue</span>;</span><br><span class="line">            	g[i][j] = C[i * j][x];</span><br><span class="line">            	<span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= i; l++)</span><br><span class="line">                	<span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt;= j; r++)</span><br><span class="line">                	&#123;</span><br><span class="line">                    	<span class="keyword">if</span> (l == i &amp;&amp; r == j) <span class="keyword">continue</span>;</span><br><span class="line">                    	g[i][j] = (g[i][j] - g[l][r] * C[i][l] % MOD * C[j][r] % MOD + MOD) % MOD;</span><br><span class="line">                	&#125;</span><br><span class="line">        	&#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; i; l++)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; j; r++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((i - l) * (j - r) &lt; x) <span class="keyword">continue</span>;</span><br><span class="line">                    f[i][j][k] = (f[i][j][k] + f[l][r][k - <span class="number">1</span>] % MOD * </span><br><span class="line">						g[i - l][j - r] % MOD * C[N - l][i - l] % MOD * C[M - r][j - r] % MOD) % MOD;</span><br><span class="line">                &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ll Ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">   		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)  </span><br><span class="line">        	Ans = (Ans + f[i][j][Col]) % MOD;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>, Ans); </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="Talk-is-Cheap…"><a href="#Talk-is-Cheap…" class="headerlink" title="$Talk\;is\;Cheap…$"></a>$Talk\;is\;Cheap…$</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">include&lt;cstdio&gt;</span><br><span class="line">include&lt;cstring&gt;</span><br><span class="line">define ll <span class="keyword">long</span> <span class="keyword">long</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ll MOD = <span class="number">1e9</span> + <span class="number">9</span>;</span><br><span class="line"><span class="keyword">int</span> N, M, Col;</span><br><span class="line">ll g35, f35[<span class="number">15</span>], C910;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;N, &amp;M, &amp;Col);</span><br><span class="line">	<span class="keyword">int</span> lim = N * M;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= lim; i++)</span><br><span class="line">		C[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= lim; i++) </span><br><span class="line">    	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j++)</span><br><span class="line">        	C[i][j] = (C[i - <span class="number">1</span>][j - <span class="number">1</span>] + C[i - <span class="number">1</span>][j]) % MOD;</span><br><span class="line">        </span><br><span class="line">	f[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= Col; k++)</span><br><span class="line">	&#123;   </span><br><span class="line">    	<span class="keyword">int</span> x; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x);</span><br><span class="line">    	<span class="built_in">memset</span>(g, <span class="number">0</span>, <span class="keyword">sizeof</span>(g));</span><br><span class="line">    	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N; i++)</span><br><span class="line">        	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= M; j++)</span><br><span class="line">       	 	&#123;</span><br><span class="line">            	<span class="keyword">if</span> (i * j &lt; x) <span class="keyword">continue</span>;</span><br><span class="line">            	g[i][j] = C[i * j][x];</span><br><span class="line">            	<span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= i; l++)</span><br><span class="line">                	<span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt;= j; r++)</span><br><span class="line">                	&#123;</span><br><span class="line">                    	<span class="keyword">if</span> (l == i &amp;&amp; r == j) <span class="keyword">continue</span>;</span><br><span class="line">                    	g[i][j] = (g[i][j] - g[l][r] * C[i][l] % MOD * C[j][r] % MOD + MOD) % MOD;</span><br><span class="line">                	&#125;</span><br><span class="line">        	&#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; i; l++)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; j; r++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((i - l) * (j - r) &lt; x) <span class="keyword">continue</span>;</span><br><span class="line">                    f[i][j][k] = (f[i][j][k] + f[l][r][k - <span class="number">1</span>] % MOD * </span><br><span class="line">						g[i - l][j - r] % MOD * C[N - l][i - l] % MOD * C[M - r][j - r] % MOD) % MOD;</span><br><span class="line">                &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ll Ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">   		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)  </span><br><span class="line">        	Ans = (Ans + f[i][j][Col]) % MOD;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>, Ans); </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -371,6 +392,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/06/NewStoneGame/" rel="prev" title="「构造博弈」[POJ1740]A New Stone Game">
+                  「构造博弈」[POJ1740]A New Stone Game <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -430,7 +455,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -443,7 +468,9 @@
         
           
         
-        <span class="site-state-item-count">1</span>
+          
+        
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span>
         
       </div>
@@ -462,7 +489,11 @@
         
           
         
-        <span class="site-state-item-count">2</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
@@ -553,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">$Description$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">$Solution$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Talk-is-Cheap"><span class="nav-number">3.</span> <span class="nav-text">$Talk\;is\;Cheap...$</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">$Description$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">$Solution$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Talk-is-Cheap…"><span class="nav-number">3.</span> <span class="nav-text">$Talk\;is\;Cheap…$</span></a></li></ol></div>
             
 
           </div>

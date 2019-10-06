@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[ZJOI2016]小星星]]></title>
+    <url>%2F2019%2F10%2F06%2FZJOI2016-Stars%2F</url>
+    <content type="text"><![CDATA[$f[i][j]$:以i为根的子树，且i在原图中的映射为j时的方案数 $f[i][j]=\prod{u\in i.child}\Sigma ^n {k=1} f[u][k]*map[i][u]$ 但这样求出的dp值包括了不合法的重复选点状态。重复选了一个的，两个的……选了(1,2)的，(1,3)的…….. 容斥的套路呼之欲出。 所以需要套用容斥定理，枚举删点方案dp。 $ps.$其实列出柿子之后首先想到的应该是状压，多加一维表示子集转移。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#include&lt;cstdio&gt;typedef long long ll;int N, M, cnt = 0;int mp[20][20] = &#123;0&#125;, h[20] = &#123;0&#125;;ll dp[20][20];struct E&#123; int t, nxt;&#125;Ed[50];void Add(int f, int t)&#123;Ed[++cnt].t = t; Ed[cnt].nxt = h[f]; h[f] = cnt;&#125;void Dfs(int u, int fa, int S)&#123; for (int i = 1; i &lt;= N; i++) dp[u][i] = 1; for (int i = h[u]; i; i = Ed[i].nxt) &#123; int v = Ed[i].t; if (v == fa) continue; Dfs(v, u, S); for (int j = 1; j &lt;= N; j++) &#123; if (((1 &lt;&lt; (j - 1)) &amp; S) == 0) &#123;dp[u][j] = 0; continue;&#125; ll sum = 0; for (int k = 1; k &lt;= N; k++) &#123; if (((1 &lt;&lt; (k - 1)) &amp; S) == 0) continue; sum += dp[v][k] * mp[k][j]; &#125; dp[u][j] *= sum; &#125; &#125;&#125;int main()&#123; scanf("%d%d", &amp;N, &amp;M); int f, t; ll Ans = 0; for (int i = 1; i &lt;= M; i++) &#123;scanf("%d%d", &amp;f, &amp;t); mp[f][t] = mp[t][f] = 1;&#125; for (int i = 1; i &lt; N; i++) &#123;scanf("%d%d", &amp;f, &amp;t); Add(f, t); Add(t, f);&#125; for (int S = 1; S &lt; (1 &lt;&lt; N); S++) &#123; int tot = 0, mul = 1; for (int j = 1; j &lt;= N; j++) if ((S &amp; (1 &lt;&lt; (j - 1))) == 0) tot++; if (tot &amp; 1) mul = -1; Dfs(1, 0, S); for (int j = 1; j &lt;= N; j++) Ans += 1LL * mul * dp[1][j]; &#125; printf("%lld", Ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>容斥</tag>
+        <tag>dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP2010初赛部分解析]]></title>
+    <url>%2F2019%2F10%2F06%2FNOIP2010%2F</url>
+    <content type="text"><![CDATA[第 14 题$Description$在整数的补码表示法中，以下说法正确的是（ ）。 A. 只有负整数的编码最高位为1 B. 在编码的位数确定后，所能表示的最小整数和最大整数的绝对值相同 C. 整数0只有一个唯一的编码 D. 两个用补码表示的数相加时，如果在最高位产生进位，则表示运算溢出 $Answer:AC$不，不是你想的那个意思$Explanation:$以下内容部分引自：原码、反码、补码讲解 补码和反码存在的意义一度令我十分困惑。 实际上，反码和补码是为了解决计算机内的加减法问题。 用原码做减法结果显然不正确。 反码表示又会出现一个问题：0和-0在计算机内的表示并不相同。 比 如 说~ 1 - 1 = 1 + (-1) = [0000 0001]原 + [1000 0001]原= [0000 0001]反 + [1111 1110]反 = [1111 1111]反 = [1000 0000]原 = -0 而补码的横空出世解决了以上的所有问题。 1-1 = 1 + (-1) = [0000 0001]原 + [1000 0001]原 = [0000 0001]补 + [1111 1111]补 = [0000 0000]补=[0000 0000]原 这样0用[0000 0000]表示, 而以前出现问题的-0则不存在了.而且可以用[1000 0000]表示-128: (-1) + (-127) = [1000 0001]原 + [1111 1111]原 = [1111 1111]补 + [1000 0001]补 = [1000 0000]补 所以八位补码能够表示的范围是$[-128,127]$ 第 22 题$Description$无向图G有7个顶点，若不存在由奇数条边构成的简单回路，则它至多有__条边。 $Answer:12$$Explanation:$ 这是一道经验题。 因此，由经验可得，将图划分为二分图能使边数最大。 通过计算得两边分别有3,4个点时最优。 $ps.$附《西江月 证明》一首。 ​ 即得易见平凡，仿照上例显然。 ​ 留作习题答案略，读者自证不难。 ​ 反之亦然同理，推论自然成立。 ​ 略去过程QED，由上可知证毕。 第 23 题$Description$记T为一队列，初始时为空，现有n个总和不超过32的正整数依次入列。 如果无论这些数具体为何值，都能找到一种出队的方式，使得存在某个时刻队列T中的数之和恰好为9，那么n的最小值是_。 $Answer:18$$Explanation:$ 此题可用抽屉原理解决。 设正整数的前缀和为$sum_i$ 现将$[1,32]$划分为17个集合，满足： 集合中有一个或两个元素。 若有两个元素，较大元素与较小元素的差为9. 也就是{1,10}, {2,11}, …, {8,17}, {18,27}, {19,28},…,{23,32} ,{24},{25},{26} $sum_i$不能含有一个集合中的两个元素，则$n=18$时恰不能满足。]]></content>
+      <categories>
+        <category>初赛</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[「构造博弈」[POJ1740]A New Stone Game]]></title>
+    <url>%2F2019%2F10%2F06%2FNewStoneGame%2F</url>
+    <content type="text"><![CDATA[$Solution-MashiroSky$ 以下证明思路来自$MashiroSky$ 首先可以发现，只有一堆石子时先手必胜。 然后，若有两堆数目相同的石子，无论先手做什么，后手在另一堆完成同样的操作，就可以保证胜利。因此后手必胜。 这个结论可以推广到所有偶数堆且两两相等的情况。 而其他情况，都可以通过一步操作变成上面所述的状态。 对于奇数堆，我们需要证明可以用某一堆石子补齐剩余的堆，使它们成对。在这里我们选择最大堆。 将所有石子堆从小到大排序，再与相邻堆两两组队，画出条形统计图，可以发现它们的差值的投影在y轴上组成了不连续的线段，且不会超出$[minheight,maxheight]$。因此一定可以补齐，剩下的扔掉即可。 对于偶数堆，可将最多的一堆拿成和最少的一堆一样多，再与其他堆补齐。 综上所述，当且仅当局面为偶数堆两两相等的石子时，先手必败。 就这样啦QWQ]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[「容斥+dp」[CQOI2011]放棋子]]></title>
     <url>%2F2019%2F09%2F14%2Fcqoi2011%2F</url>
-    <content type="text"><![CDATA[$Description$在一个m行n列的棋盘里放一些彩色的棋子，使得每个格子最多放一个棋子，且不同 颜色的棋子不能在同一行或者同一列。有多少种方法？ $Solution$ 由于不同色的棋子不能放在同一列，每种颜色的棋子的放置是相互独立的。 因此可以考虑dp处理。 设$f[i][j][k]$：前k种颜色的棋子占领了i行j列的方案数。 $C[i][j]$：组合数（i个中选j个）。 设$g[i][j][k]:$k个棋子恰好占据i行j列的方案数。 $a[k]:$第k种棋子的个数。 由于一个棋子至少要占据一行一列，我们枚举$l&lt;i,r&lt;j$ $f[i][j][k]=\Sigma f[l][r][k-1]× C[n-l][i-l]× C[m-r][j-r]× g[i-l][j-r][a[k]]$ $Explanation:$对于$f[l][r][k-1]$中已经选中的l行r列不动，从剩下的n-l行中任意选择i-l行放置棋子，列同理。 其他都好办，但我们发现$g[i][j][k]$没法直接求。 通过观察，我们发现在i行j列中放k个棋子的方案数很好求（$C[i*j][k]$），不合法的方案就是实际上占领的行数&lt;i或列数&lt;j。 所以直接枚举$l&lt;=i,r&lt;=j(l×r&lt;i×j)$ $g[i][j][k]=C[i× j][k]-\Sigma g[l][r][k]× C[i][l]× C[j][r]$ $Talk\;is\;Cheap...$1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253include&lt;cstdio&gt;include&lt;cstring&gt;define ll long longconst ll MOD = 1e9 + 9;int N, M, Col;ll g35, f35[15], C910;int main()&#123; scanf("%d%d%d", &amp;N, &amp;M, &amp;Col); int lim = N * M; for (int i = 0; i &lt;= lim; i++) C[i][0] = 1; for (int i = 1; i &lt;= lim; i++) for (int j = 1; j &lt;= i; j++) C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % MOD; f[0][0][0] = 1; for (int k = 1; k &lt;= Col; k++) &#123; int x; scanf("%d", &amp;x); memset(g, 0, sizeof(g)); for (int i = 0; i &lt;= N; i++) for (int j = 0; j &lt;= M; j++) &#123; if (i * j &lt; x) continue; g[i][j] = C[i * j][x]; for (int l = 0; l &lt;= i; l++) for (int r = 0; r &lt;= j; r++) &#123; if (l == i &amp;&amp; r == j) continue; g[i][j] = (g[i][j] - g[l][r] * C[i][l] % MOD * C[j][r] % MOD + MOD) % MOD; &#125; &#125; for (int i = 1; i &lt;= N; i++) for (int j = 1; j &lt;= M; j++) for (int l = 0; l &lt; i; l++) for (int r = 0; r &lt; j; r++) &#123; if ((i - l) * (j - r) &lt; x) continue; f[i][j][k] = (f[i][j][k] + f[l][r][k - 1] % MOD * g[i - l][j - r] % MOD * C[N - l][i - l] % MOD * C[M - r][j - r] % MOD) % MOD; &#125; &#125; ll Ans = 0; for (int i = 1; i &lt;= N; i++) for (int j = 1; j &lt;= M; j++) Ans = (Ans + f[i][j][Col]) % MOD; printf("%lld", Ans); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[$Description$在一个m行n列的棋盘里放一些彩色的棋子，使得每个格子最多放一个棋子，且不同 颜色的棋子不能在同一行或者同一列。有多少种方法？ $Solution$ 由于不同色的棋子不能放在同一列，每种颜色的棋子的放置是相互独立的。 因此可以考虑dp处理。 设$f[i][j][k]$：前k种颜色的棋子占领了i行j列的方案数。 $C[i][j]$：组合数（i个中选j个）。 设$g[i][j][k]:$k个棋子恰好占据i行j列的方案数。 $a[k]:$第k种棋子的个数。 由于一个棋子至少要占据一行一列，我们枚举$l&lt;i,r&lt;j$ $f[i][j][k]=\Sigma f[l][r][k-1]× C[n-l][i-l]× C[m-r][j-r]× g[i-l][j-r][a[k]]$ $Explanation:$对于$f[l][r][k-1]$中已经选中的l行r列不动，从剩下的n-l行中任意选择i-l行放置棋子，列同理。 其他都好办，但我们发现$g[i][j][k]$没法直接求。 通过观察，我们发现在i行j列中放k个棋子的方案数很好求（$C[i*j][k]$），不合法的方案就是实际上占领的行数&lt;i或列数&lt;j。 所以直接枚举$l&lt;=i,r&lt;=j(l×r&lt;i×j)$ $g[i][j][k]=C[i× j][k]-\Sigma g[l][r][k]× C[i][l]× C[j][r]$ $Talk\;is\;Cheap…$1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253include&lt;cstdio&gt;include&lt;cstring&gt;define ll long longconst ll MOD = 1e9 + 9;int N, M, Col;ll g35, f35[15], C910;int main()&#123; scanf("%d%d%d", &amp;N, &amp;M, &amp;Col); int lim = N * M; for (int i = 0; i &lt;= lim; i++) C[i][0] = 1; for (int i = 1; i &lt;= lim; i++) for (int j = 1; j &lt;= i; j++) C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % MOD; f[0][0][0] = 1; for (int k = 1; k &lt;= Col; k++) &#123; int x; scanf("%d", &amp;x); memset(g, 0, sizeof(g)); for (int i = 0; i &lt;= N; i++) for (int j = 0; j &lt;= M; j++) &#123; if (i * j &lt; x) continue; g[i][j] = C[i * j][x]; for (int l = 0; l &lt;= i; l++) for (int r = 0; r &lt;= j; r++) &#123; if (l == i &amp;&amp; r == j) continue; g[i][j] = (g[i][j] - g[l][r] * C[i][l] % MOD * C[j][r] % MOD + MOD) % MOD; &#125; &#125; for (int i = 1; i &lt;= N; i++) for (int j = 1; j &lt;= M; j++) for (int l = 0; l &lt; i; l++) for (int r = 0; r &lt; j; r++) &#123; if ((i - l) * (j - r) &lt; x) continue; f[i][j][k] = (f[i][j][k] + f[l][r][k - 1] % MOD * g[i - l][j - r] % MOD * C[N - l][i - l] % MOD * C[M - r][j - r] % MOD) % MOD; &#125; &#125; ll Ans = 0; for (int i = 1; i &lt;= N; i++) for (int j = 1; j &lt;= M; j++) Ans = (Ans + f[i][j][Col]) % MOD; printf("%lld", Ans); return 0;&#125;]]></content>
       <categories>
         <category>题解</category>
       </categories>
